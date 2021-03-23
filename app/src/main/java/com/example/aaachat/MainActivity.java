@@ -10,6 +10,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.aaachat.databinding.ActivityMainBinding;
 import com.example.aaachat.menu.ChatsFragment;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         setupViewPager(binding.viewPager);
         binding.tabLayout.setupWithViewPager(binding.viewPager);
+        setSupportActionBar(binding.toolbar);
     }
 
     private void setupViewPager(ViewPager vp) {
@@ -71,5 +75,25 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch(id) {
+            case R.id.menu_search:
+                Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menu_options:
+                Toast.makeText(this, "Options", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
