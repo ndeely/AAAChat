@@ -55,20 +55,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void changeFabIcon(final int index) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                switch (index) {
-                    case 0:
-                        binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_baseline_chat_24));
-                        break;
-                    case 1:
-                        binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_baseline_photo_camera_24));
-                        break;
-                    case 2:
-                        binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_baseline_call_24));
-                        break;
-                }
+        new Handler().postDelayed(() -> {
+            switch (index) {
+                case 0:
+                    binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_baseline_chat_24));
+                    break;
+                case 1:
+                    binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_baseline_photo_camera_24));
+                    break;
+                case 2:
+                    binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_baseline_call_24));
+                    break;
             }
         }, 300);
     }
@@ -123,13 +120,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        switch(id) {
-            case R.id.menu_search:
-                Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.menu_options:
-                Toast.makeText(this, "Options", Toast.LENGTH_SHORT).show();
-                break;
+        if (id == R.id.menu_search) {
+            Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.menu_options) {
+            Toast.makeText(this, "Options", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
